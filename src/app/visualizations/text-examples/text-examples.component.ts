@@ -132,6 +132,18 @@ export class TextExamplesComponent implements OnInit {
       .enter()                           // Get enter selection for new elements
       .append('p')                       // Append paragraph for each data item
       .attr('class', 'text-item')        // Add the same class as Angular version
-      .text(d => d);                     // Set text content from data
+      .text(d => d)                      // Set text content from data
+      .on('click', (event, d) => {       // Add click handler
+        alert(d);                        // Show alert with text content
+      })
+      .on('mouseover', function() {      // Add mouseover handler
+        d3.select(this)                  // Select hovered element
+          .style('color', '#007bff')     // Change text color on hover
+          .style('cursor', 'pointer');    // Change cursor to pointer
+      })
+      .on('mouseout', function() {       // Add mouseout to reset
+        d3.select(this)
+          .style('color', null);         // Reset text color
+      });
   }
 } 
