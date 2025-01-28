@@ -7,6 +7,13 @@ interface TreeMapData {
   children: { name: string; value: number; }[];
 }
 
+interface TreeMapNode extends d3.HierarchyNode<TreeMapData> {
+  x0?: number;
+  x1?: number;
+  y0?: number;
+  y1?: number;
+}
+
 @Component({
   selector: 'app-tree-map',
   standalone: true,
@@ -71,13 +78,13 @@ export class TreeMapComponent implements OnInit {
     const color = d3.scaleOrdinal(d3.schemeCategory10);
 
     const cell = svg.selectAll('g')
-      .data(root.leaves())
+      .data<TreeMapNode>(root.leaves())
       .enter().append('g')
-      .attr('transform', d => `translate(${d.x0},${d.y0})`);
+      .attr('transform', (d: TreeMapNode) => `translate(${d.x0},${d.y0})`);
 
     cell.append('rect')
-      .attr('width', d => d.x1 - d.x0)
-      .attr('height', d => d.y1 - d.y0)
+      .attr('width', (d: TreeMapNode) => (d.x1 ?? 0) - (d.x0 ?? 0))
+      .attr('height', (d: TreeMapNode) => (d.y1 ?? 0) - (d.y0 ?? 0))
       .attr('fill', (d, i) => color(i.toString()));
 
     cell.append('text')
