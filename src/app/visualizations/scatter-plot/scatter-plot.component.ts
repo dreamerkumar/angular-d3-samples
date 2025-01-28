@@ -8,6 +8,22 @@ import * as d3 from 'd3';
     <div class="visualization-container">
       <h2>Scatter Plot Example</h2>
       <div class="chart-container"></div>
+      <div class="explanation">
+        <p class="description">
+          A scatter plot showing the relationship between two variables as points in 2D space.
+        </p>
+        <div class="steps">
+          <p>Implementation steps:</p>
+          <ul>
+            <li>Each point represents an X,Y coordinate pair</li>
+            <li>X and Y scales map data values to pixel positions</li>
+            <li>Points are rendered as SVG circles</li>
+            <li>Axes show the range of values</li>
+            <li>Point positions reveal patterns and correlations</li>
+            <li>Random data used here, but typically shows real relationships</li>
+          </ul>
+        </div>
+      </div>
     </div>
   `,
   styles: [`
@@ -17,6 +33,25 @@ import * as d3 from 'd3';
     .chart-container {
       width: 100%;
       height: 400px;
+    }
+    .explanation {
+      margin-top: 20px;
+      padding: 0 20px;
+    }
+    .description {
+      font-size: 14px;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .steps {
+      font-size: 12px;
+    }
+    .steps ul {
+      margin-top: 5px;
+      padding-left: 25px;
+    }
+    .steps li {
+      margin: 5px 0;
     }
   `]
 })

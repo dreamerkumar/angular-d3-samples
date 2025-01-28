@@ -8,6 +8,22 @@ import * as d3 from 'd3';
     <div class="visualization-container">
       <h2>Pie Chart Example</h2>
       <div class="chart-container"></div>
+      <div class="explanation">
+        <p class="description">
+          A pie chart showing proportional distribution of categories in a circular format.
+        </p>
+        <div class="steps">
+          <p>Implementation steps:</p>
+          <ul>
+            <li>Data is transformed into angles using d3.pie()</li>
+            <li>Each slice represents a proportion of the total</li>
+            <li>Arc paths are generated using d3.arc()</li>
+            <li>Colors are assigned using d3.scaleOrdinal</li>
+            <li>Labels are positioned at the centroid of each arc</li>
+            <li>Total angle spans 2π radians (360 degrees)</li>
+          </ul>
+        </div>
+      </div>
     </div>
   `,
   styles: [`
@@ -17,6 +33,25 @@ import * as d3 from 'd3';
     .chart-container {
       width: 100%;
       height: 400px;
+    }
+    .explanation {
+      margin-top: 20px;
+      padding: 0 20px;
+    }
+    .description {
+      font-size: 14px;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .steps {
+      font-size: 12px;
+    }
+    .steps ul {
+      margin-top: 5px;
+      padding-left: 25px;
+    }
+    .steps li {
+      margin: 5px 0;
     }
   `]
 })
@@ -41,7 +76,8 @@ export class PieChartComponent implements OnInit {
     const container = this.el.nativeElement.querySelector('.chart-container');
     const width = container.clientWidth;
     const height = container.clientHeight;
-    const radius = Math.min(width, height) / 2;  // Use smaller dimension for radius
+    const margin = { top: 20, right: 20, bottom: 30, left: 40 }; // Add margin definition
+    const radius = Math.min(width, height) / 2;
 
     // Create color scale for segments
     const color = d3.scaleOrdinal(d3.schemeCategory10);  // D3's built-in color scheme

@@ -21,6 +21,29 @@ interface TreeMapNode extends d3.HierarchyNode<TreeMapData> {
     <div class="visualization-container">
       <h2>Tree Map Example</h2>
       <div class="chart-container"></div>
+      <div class="explanation">
+        <p class="description">
+          A treemap showing hierarchical data through nested rectangles.
+        </p>
+        <div class="steps">
+          <p>Implementation steps:</p>
+          <ul>
+            <li>Hierarchical data displayed as nested rectangles</li>
+            <li>Rectangle size proportional to data value</li>
+            <li>Key D3 functions used:
+              <ul>
+                <li>d3.hierarchy() processes tree structure</li>
+                <li>d3.treemap() computes layout</li>
+                <li>Rectangle dimensions from x0,y0,x1,y1</li>
+              </ul>
+            </li>
+            <li>Colors distinguish different categories</li>
+            <li>Labels show category names inside rectangles</li>
+            <li>Useful for showing part-to-whole relationships</li>
+            <li>Efficient use of space for hierarchical data</li>
+          </ul>
+        </div>
+      </div>
     </div>
   `,
   styles: [`
@@ -30,6 +53,28 @@ interface TreeMapNode extends d3.HierarchyNode<TreeMapData> {
     .chart-container {
       width: 100%;
       height: 400px;
+    }
+    .explanation {
+      margin-top: 20px;
+      padding: 0 20px;
+    }
+    .description {
+      font-size: 14px;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .steps {
+      font-size: 12px;
+    }
+    .steps ul {
+      margin-top: 5px;
+      padding-left: 25px;
+    }
+    .steps li {
+      margin: 5px 0;
+    }
+    .steps li ul {
+      margin-top: 2px;
     }
   `]
 })

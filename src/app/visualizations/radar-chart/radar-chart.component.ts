@@ -8,6 +8,28 @@ import * as d3 from 'd3';
     <div class="visualization-container">
       <h2>Radar Chart Example</h2>
       <div class="chart-container"></div>
+      <div class="explanation">
+        <p class="description">
+          A radar chart showing multiple variables on radial axes from a central point.
+        </p>
+        <div class="steps">
+          <p>Implementation steps:</p>
+          <ul>
+            <li>Each axis represents a different variable</li>
+            <li>Values plotted from center (0) to edge (max)</li>
+            <li>Points connected to form polygon shape</li>
+            <li>Key components:
+              <ul>
+                <li>Radial axes for each metric</li>
+                <li>Circular grid lines show scale</li>
+                <li>Filled polygon shows data area</li>
+              </ul>
+            </li>
+            <li>Useful for comparing multiple metrics simultaneously</li>
+            <li>Good for showing relative strengths/weaknesses</li>
+          </ul>
+        </div>
+      </div>
     </div>
   `,
   styles: [`
@@ -17,6 +39,28 @@ import * as d3 from 'd3';
     .chart-container {
       width: 100%;
       height: 400px;
+    }
+    .explanation {
+      margin-top: 20px;
+      padding: 0 20px;
+    }
+    .description {
+      font-size: 14px;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .steps {
+      font-size: 12px;
+    }
+    .steps ul {
+      margin-top: 5px;
+      padding-left: 25px;
+    }
+    .steps li {
+      margin: 5px 0;
+    }
+    .steps li ul {
+      margin-top: 2px;
     }
   `]
 })

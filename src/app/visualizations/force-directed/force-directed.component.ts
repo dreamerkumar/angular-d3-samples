@@ -13,6 +13,44 @@ interface Node extends d3.SimulationNodeDatum {
     <div class="visualization-container">
       <h2>Force Directed Graph Example</h2>
       <div class="chart-container"></div>
+      <div class="explanation">
+        <p class="description">
+          A force-directed graph showing relationships between nodes with physics simulation.
+        </p>
+        <div class="steps">
+          <p>Implementation steps:</p>
+          <ul>
+            <li>Network structure:
+              <ul>
+                <li>Nodes represent entities</li>
+                <li>Links show connections between nodes</li>
+                <li>Node groups indicated by colors</li>
+              </ul>
+            </li>
+            <li>Force simulation physics:
+              <ul>
+                <li>Link forces keep connected nodes together</li>
+                <li>Charge forces make nodes repel each other</li>
+                <li>Center force pulls nodes toward center</li>
+              </ul>
+            </li>
+            <li>Interactive features:
+              <ul>
+                <li>Drag nodes to reposition</li>
+                <li>Physics simulation adjusts other nodes</li>
+                <li>Hover shows node details</li>
+              </ul>
+            </li>
+            <li>Visual properties:
+              <ul>
+                <li>Node size shows importance</li>
+                <li>Link thickness shows connection strength</li>
+                <li>Colors distinguish node groups</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   `,
   styles: [`
@@ -22,6 +60,28 @@ interface Node extends d3.SimulationNodeDatum {
     .chart-container {
       width: 100%;
       height: 400px;
+    }
+    .explanation {
+      margin-top: 20px;
+      padding: 0 20px;
+    }
+    .description {
+      font-size: 14px;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .steps {
+      font-size: 12px;
+    }
+    .steps ul {
+      margin-top: 5px;
+      padding-left: 25px;
+    }
+    .steps li {
+      margin: 5px 0;
+    }
+    .steps li ul {
+      margin-top: 2px;
     }
   `]
 })
@@ -59,6 +119,7 @@ export class ForceDirectedComponent implements OnInit {
     const container = this.el.nativeElement.querySelector('.chart-container');
     const width = container.clientWidth;
     const height = container.clientHeight;
+    const margin = { top: 20, right: 20, bottom: 30, left: 40 };
 
     // Create a color scale that maps group numbers to different colors
     const color = d3.scaleOrdinal(d3.schemeCategory10);
@@ -71,7 +132,7 @@ export class ForceDirectedComponent implements OnInit {
       .force('link', d3.forceLink(data.links).id((d: any) => d.id))
       // - charge force makes nodes repel each other
       .force('charge', d3.forceManyBody().strength(-100))
-      // - center force pulls all nodes to the center of the container
+      // - center force pulls nodes toward center
       .force('center', d3.forceCenter(width / 2, height / 2));
 
     // Create the SVG container for the visualization

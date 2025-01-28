@@ -8,6 +8,21 @@ import * as d3 from 'd3';
     <div class="visualization-container">
       <h2>Line Chart Example</h2>
       <div class="chart-container"></div>
+      <div class="explanation">
+        <p class="description">
+          A line chart showing data trends over time with connected points.
+        </p>
+        <div class="steps">
+          <p>Implementation steps:</p>
+          <ul>
+            <li>Data points represent values over time</li>
+            <li>Points are connected using d3.line() generator</li>
+            <li>X-axis uses time scale (d3.scaleTime)</li>
+            <li>Y-axis uses linear scale for values</li>
+            <li>Smooth line transitions between points</li>
+          </ul>
+        </div>
+      </div>
     </div>
   `,
   styles: [`
@@ -17,6 +32,25 @@ import * as d3 from 'd3';
     .chart-container {
       width: 100%;
       height: 400px;
+    }
+    .explanation {
+      margin-top: 20px;
+      padding: 0 20px;
+    }
+    .description {
+      font-size: 14px;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .steps {
+      font-size: 12px;
+    }
+    .steps ul {
+      margin-top: 5px;
+      padding-left: 25px;
+    }
+    .steps li {
+      margin: 5px 0;
     }
   `]
 })

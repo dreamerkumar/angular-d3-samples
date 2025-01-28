@@ -8,6 +8,27 @@ import * as d3 from 'd3';
     <div class="visualization-container">
       <h2>Donut Chart Example</h2>
       <div class="chart-container"></div>
+      <div class="explanation">
+        <p class="description">
+          A donut chart showing proportional data with a hollow center for additional information.
+        </p>
+        <div class="steps">
+          <p>Implementation steps:</p>
+          <ul>
+            <li>Similar to pie chart but with hollow center</li>
+            <li>Data proportions determine arc sizes:
+              <ul>
+                <li>innerRadius creates the donut hole</li>
+                <li>outerRadius sets the donut thickness</li>
+              </ul>
+            </li>
+            <li>Arc paths generated using d3.arc()</li>
+            <li>Colors distinguish different categories</li>
+            <li>Labels positioned at arc centroids</li>
+            <li>Center space can be used for summary stats</li>
+          </ul>
+        </div>
+      </div>
     </div>
   `,
   styles: [`
@@ -17,6 +38,28 @@ import * as d3 from 'd3';
     .chart-container {
       width: 100%;
       height: 400px;
+    }
+    .explanation {
+      margin-top: 20px;
+      padding: 0 20px;
+    }
+    .description {
+      font-size: 14px;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .steps {
+      font-size: 12px;
+    }
+    .steps ul {
+      margin-top: 5px;
+      padding-left: 25px;
+    }
+    .steps li {
+      margin: 5px 0;
+    }
+    .steps li ul {
+      margin-top: 2px;
     }
   `]
 })

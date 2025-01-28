@@ -8,6 +8,21 @@ import * as d3 from 'd3';
     <div class="visualization-container">
       <h2>Bar Chart Example</h2>
       <div class="chart-container"></div>
+      <div class="explanation">
+        <p class="description">
+          A simple bar chart showing categorical data with vertical bars.
+        </p>
+        <div class="steps">
+          <p>Implementation steps:</p>
+          <ul>
+            <li>Data represents categories (A-E) with corresponding values</li>
+            <li>Each bar height represents the value for that category</li>
+            <li>Bars are evenly spaced using d3.scaleBand</li>
+            <li>Height is scaled using d3.scaleLinear</li>
+            <li>Interactive hover effects show exact values</li>
+          </ul>
+        </div>
+      </div>
     </div>
   `,
   styles: [`
@@ -17,6 +32,25 @@ import * as d3 from 'd3';
     .chart-container {
       width: 100%;
       height: 400px;
+    }
+    .explanation {
+      margin-top: 20px;
+      padding: 0 20px;
+    }
+    .description {
+      font-size: 14px;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .steps {
+      font-size: 12px;
+    }
+    .steps ul {
+      margin-top: 5px;
+      padding-left: 25px;
+    }
+    .steps li {
+      margin: 5px 0;
     }
   `]
 })

@@ -8,6 +8,27 @@ import * as d3 from 'd3';
     <div class="visualization-container">
       <h2>Area Chart Example</h2>
       <div class="chart-container"></div>
+      <div class="explanation">
+        <p class="description">
+          An area chart showing data trends with filled area below the line.
+        </p>
+        <div class="steps">
+          <p>Implementation steps:</p>
+          <ul>
+            <li>Similar to line chart but with filled area below</li>
+            <li>d3.area() generator creates area shape:
+              <ul>
+                <li>y0 defines bottom baseline (usually 0)</li>
+                <li>y1 defines top line from data values</li>
+              </ul>
+            </li>
+            <li>X-axis shows time progression</li>
+            <li>Y-axis shows value magnitude</li>
+            <li>Fill color with opacity shows data volume</li>
+            <li>Useful for showing cumulative values or ranges</li>
+          </ul>
+        </div>
+      </div>
     </div>
   `,
   styles: [`
@@ -17,6 +38,28 @@ import * as d3 from 'd3';
     .chart-container {
       width: 100%;
       height: 400px;
+    }
+    .explanation {
+      margin-top: 20px;
+      padding: 0 20px;
+    }
+    .description {
+      font-size: 14px;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .steps {
+      font-size: 12px;
+    }
+    .steps ul {
+      margin-top: 5px;
+      padding-left: 25px;
+    }
+    .steps li {
+      margin: 5px 0;
+    }
+    .steps li ul {
+      margin-top: 2px;
     }
   `]
 })
