@@ -1,5 +1,11 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import * as d3 from 'd3';
+import { hierarchy } from 'd3';
+
+interface TreeMapData {
+  name: string;
+  children: { name: string; value: number; }[];
+}
 
 @Component({
   selector: 'app-tree-map',
@@ -27,7 +33,7 @@ export class TreeMapComponent implements OnInit {
     this.createTreeMap();
   }
 
-  private createTreeMap() {
+  private createTreeMap(): void {
     const data = {
       name: 'root',
       children: [
@@ -48,10 +54,15 @@ export class TreeMapComponent implements OnInit {
       .attr('width', width)
       .attr('height', height);
 
-    const root = d3.hierarchy(data)
-      .sum(d => (d as any).value);
+    const root = hierarchy<TreeMapData>(data)
+      .sum(d => {
+        if ('value' in d) {
+          return (d as { value: number }).value;
+        }
+        return 0;
+      });
 
-    const treemap = d3.treemap()
+    const treemap = d3.treemap<TreeMapData>()
       .size([width, height])
       .padding(1);
 

@@ -1,6 +1,11 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import * as d3 from 'd3';
 
+interface Node extends d3.SimulationNodeDatum {
+  id: string;
+  group: number;
+}
+
 @Component({
   selector: 'app-force-directed',
   standalone: true,
@@ -55,7 +60,7 @@ export class ForceDirectedComponent implements OnInit {
 
     const color = d3.scaleOrdinal(d3.schemeCategory10);
 
-    const simulation = d3.forceSimulation(data.nodes)
+    const simulation = d3.forceSimulation<Node>(data.nodes)
       .force('link', d3.forceLink(data.links).id((d: any) => d.id))
       .force('charge', d3.forceManyBody().strength(-100))
       .force('center', d3.forceCenter(width / 2, height / 2));
