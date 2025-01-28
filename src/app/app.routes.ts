@@ -11,5 +11,6 @@ export const routes: Routes = [
   { path: 'area-chart', loadComponent: () => import('./visualizations/area-chart/area-chart.component').then(m => m.AreaChartComponent) },
   { path: 'tree-map', loadComponent: () => import('./visualizations/tree-map/tree-map.component').then(m => m.TreeMapComponent) },
   { path: 'radar-chart', loadComponent: () => import('./visualizations/radar-chart/radar-chart.component').then(m => m.RadarChartComponent) },
-  { path: 'force-directed', loadComponent: () => import('./visualizations/force-directed/force-directed.component').then(m => m.ForceDirectedComponent) }
+  { path: 'force-directed', loadComponent: () => import('./visualizations/force-directed/force-directed.component').then(m => m.ForceDirectedComponent) },
+  { path: 'circle-examples', loadComponent: () => import('./visualizations/circle-examples/circle-examples.component').then(m => m.CircleExamplesComponent) }
 ];
