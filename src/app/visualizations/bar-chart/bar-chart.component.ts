@@ -28,6 +28,7 @@ export class BarChartComponent implements OnInit {
   }
 
   private createBarChart() {
+    // Sample data with categories and values
     const data = [
       { label: 'A', value: 10 },
       { label: 'B', value: 20 },
@@ -36,11 +37,13 @@ export class BarChartComponent implements OnInit {
       { label: 'E', value: 50 },
     ];
 
+    // Set up margins and dimensions
     const container = this.el.nativeElement.querySelector('.chart-container');
     const margin = { top: 20, right: 20, bottom: 30, left: 40 };
     const width = container.clientWidth - margin.left - margin.right;
     const height = container.clientHeight - margin.top - margin.bottom;
 
+    // Create SVG container with margins
     const svg = d3.select(container)
       .append('svg')
       .attr('width', width + margin.left + margin.right)
@@ -48,30 +51,36 @@ export class BarChartComponent implements OnInit {
       .append('g')
       .attr('transform', `translate(${margin.left},${margin.top})`);
 
+    // Create X scale (band scale for categorical data)
     const x = d3.scaleBand()
-      .range([0, width])
-      .padding(0.1);
+      .range([0, width])     // Output range
+      .padding(0.1);         // Add padding between bars
 
+    // Create Y scale (linear for values)
     const y = d3.scaleLinear()
-      .range([height, 0]);
+      .range([height, 0]);   // Output range (inverted for SVG)
 
-    x.domain(data.map(d => d.label));
-    y.domain([0, d3.max(data, d => d.value)!]);
+    // Set domains for scales
+    x.domain(data.map(d => d.label));              // Set categories
+    y.domain([0, d3.max(data, d => d.value)!]);    // Set value range
 
+    // Create and add the bars
     svg.selectAll('.bar')
       .data(data)
       .enter().append('rect')
       .attr('class', 'bar')
-      .attr('x', d => x(d.label)!)
-      .attr('width', x.bandwidth())
-      .attr('y', d => y(d.value))
-      .attr('height', d => height - y(d.value))
-      .attr('fill', '#007bff');
+      .attr('x', d => x(d.label)!)     // X position
+      .attr('width', x.bandwidth())     // Bar width
+      .attr('y', d => y(d.value))      // Y position (top of bar)
+      .attr('height', d => height - y(d.value))  // Bar height
+      .attr('fill', '#007bff');        // Bar color
 
+    // Add X axis
     svg.append('g')
       .attr('transform', `translate(0,${height})`)
       .call(d3.axisBottom(x));
 
+    // Add Y axis
     svg.append('g')
       .call(d3.axisLeft(y));
   }

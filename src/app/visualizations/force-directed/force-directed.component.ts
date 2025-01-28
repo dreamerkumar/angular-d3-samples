@@ -33,6 +33,7 @@ export class ForceDirectedComponent implements OnInit {
   }
 
   private createForceDirectedGraph() {
+    // Sample data structure with nodes and links representing a network
     const data = {
       nodes: [
         { id: 'A', group: 1 },
@@ -54,71 +55,93 @@ export class ForceDirectedComponent implements OnInit {
       ]
     };
 
+    // Get the container dimensions for the visualization
     const container = this.el.nativeElement.querySelector('.chart-container');
     const width = container.clientWidth;
     const height = container.clientHeight;
 
+    // Create a color scale that maps group numbers to different colors
     const color = d3.scaleOrdinal(d3.schemeCategory10);
 
+    // Initialize the force simulation
+    // This is the physics engine that will move the nodes around
     const simulation = d3.forceSimulation<Node>(data.nodes)
+      // Add forces:
+      // - link force keeps connected nodes together
       .force('link', d3.forceLink(data.links).id((d: any) => d.id))
+      // - charge force makes nodes repel each other
       .force('charge', d3.forceManyBody().strength(-100))
+      // - center force pulls all nodes to the center of the container
       .force('center', d3.forceCenter(width / 2, height / 2));
 
+    // Create the SVG container for the visualization
     const svg = d3.select(container)
       .append('svg')
       .attr('width', width)
       .attr('height', height);
 
+    // Create the links (lines) between nodes
     const link = svg.append('g')
       .selectAll('line')
       .data(data.links)
       .enter()
       .append('line')
-      .attr('stroke', '#999')
-      .attr('stroke-opacity', 0.6)
-      .attr('stroke-width', d => Math.sqrt(d.value));
+      .attr('stroke', '#999')  // Gray color for links
+      .attr('stroke-opacity', 0.6)  // Semi-transparent
+      .attr('stroke-width', d => Math.sqrt(d.value));  // Link thickness based on value
 
+    // Create the nodes (circles)
     const node = svg.append('g')
       .selectAll('circle')
       .data(data.nodes)
       .enter()
       .append('circle')
-      .attr('r', 8)
-      .attr('fill', (d: any) => color(d.group.toString()))
+      .attr('r', 8)  // Circle radius
+      .attr('fill', (d: any) => color(d.group.toString()))  // Color based on group
+      // Add drag behavior to nodes
       .call(d3.drag<any, any>()
         .on('start', dragstarted)
         .on('drag', dragged)
         .on('end', dragended));
 
+    // Add tooltips showing node IDs
     node.append('title')
       .text((d: any) => d.id);
 
+    // Update node and link positions on each simulation tick
     simulation.on('tick', () => {
+      // Update link positions to connect their source and target nodes
       link
         .attr('x1', (d: any) => d.source.x)
         .attr('y1', (d: any) => d.source.y)
         .attr('x2', (d: any) => d.target.x)
         .attr('y2', (d: any) => d.target.y);
 
+      // Update node positions
       node
         .attr('cx', (d: any) => d.x)
         .attr('cy', (d: any) => d.y);
     });
 
+    // Drag event handlers
     function dragstarted(event: any) {
+      // Restart simulation if it's cooled down
       if (!event.active) simulation.alphaTarget(0.3).restart();
+      // Fix node position during drag
       event.subject.fx = event.subject.x;
       event.subject.fy = event.subject.y;
     }
 
     function dragged(event: any) {
+      // Update node position during drag
       event.subject.fx = event.x;
       event.subject.fy = event.y;
     }
 
     function dragended(event: any) {
+      // Cool down simulation when drag ends
       if (!event.active) simulation.alphaTarget(0);
+      // Release node position
       event.subject.fx = null;
       event.subject.fy = null;
     }
