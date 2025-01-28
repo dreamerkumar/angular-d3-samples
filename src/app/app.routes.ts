@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { TextExamplesComponent } from './visualizations/text-examples/text-examples.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'bar-chart', pathMatch: 'full' },
@@ -12,5 +13,10 @@ export const routes: Routes = [
   { path: 'tree-map', loadComponent: () => import('./visualizations/tree-map/tree-map.component').then(m => m.TreeMapComponent) },
   { path: 'radar-chart', loadComponent: () => import('./visualizations/radar-chart/radar-chart.component').then(m => m.RadarChartComponent) },
   { path: 'force-directed', loadComponent: () => import('./visualizations/force-directed/force-directed.component').then(m => m.ForceDirectedComponent) },
-  { path: 'circle-examples', loadComponent: () => import('./visualizations/circle-examples/circle-examples.component').then(m => m.CircleExamplesComponent) }
+  { path: 'circle-examples', loadComponent: () => import('./visualizations/circle-examples/circle-examples.component').then(m => m.CircleExamplesComponent) },
+  {
+    path: 'text-examples',
+    component: TextExamplesComponent,
+    title: 'Text Examples'
+  }
 ];
