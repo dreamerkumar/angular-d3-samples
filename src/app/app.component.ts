@@ -21,6 +21,7 @@ export class AppComponent {
     { path: '/tree-map', label: 'Tree Map' },
     { path: '/radar-chart', label: 'Radar Chart' },
     { path: '/force-directed', label: 'Force Directed Graph' },
-    { path: '/circle-examples', label: 'Circle Examples' }
+    { path: '/circle-examples', label: 'Circle Examples' },
+    { path: '/text-examples', label: 'Text Examples' }
   ];
 }
