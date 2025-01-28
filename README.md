@@ -1,5 +1,12 @@
 # AngularD3Samples
 
+A collection of sample visualizations built with Angular and D3.js, demonstrating how to create interactive data visualizations by integrating these powerful frameworks. This repository serves as a learning resource and reference implementation for developers looking to build data visualization applications using Angular and D3.js.
+
+## Live Demo
+Check out the live demo at: [https://angular-d3-samples-7tq8.vercel.app/bar-chart](https://angular-d3-samples-7tq8.vercel.app/bar-chart)
+
+## CLI Commands
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.11.
 
 ## Development server
