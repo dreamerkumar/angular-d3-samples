@@ -20,6 +20,7 @@ export class AppComponent {
     { path: '/area-chart', label: 'Area Chart' },
     { path: '/tree-map', label: 'Tree Map' },
     { path: '/radar-chart', label: 'Radar Chart' },
-    { path: '/force-directed', label: 'Force Directed Graph' }
+    { path: '/force-directed', label: 'Force Directed Graph' },
+    { path: '/circle-examples', label: 'Circle Examples' }
   ];
 }
