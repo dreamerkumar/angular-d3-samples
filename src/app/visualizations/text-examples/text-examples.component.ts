@@ -25,7 +25,7 @@ import * as d3 from 'd3';
       <div class="text-section">
         <h3>D3 Data-bound Text</h3>
         <!-- Container for D3 to inject content -->
-        <div class="d3-text-container"></div>
+        <div class="d3-text-container"><p>Hello</p></div>
       </div>
 
       <div class="explanation">
@@ -127,23 +127,25 @@ export class TextExamplesComponent implements OnInit {
 
     // Create paragraph elements for each data item
     const paragraphs = container
-      .selectAll('p')                    // Select all paragraphs (initially empty)
+      .selectAll()                    // Select all paragraphs (initially empty)
       .data(this.textData)               // Bind data array to selection
       .enter()                           // Get enter selection for new elements
-      .append('p')                       // Append paragraph for each data item
-      .attr('class', 'text-item')        // Add the same class as Angular version
-      .text(d => d)                      // Set text content from data
-      .on('click', (event, d) => {       // Add click handler
-        alert(d);                        // Show alert with text content
-      })
-      .on('mouseover', function() {      // Add mouseover handler
-        d3.select(this)                  // Select hovered element
-          .style('color', '#007bff')     // Change text color on hover
-          .style('cursor', 'pointer');    // Change cursor to pointer
-      })
-      .on('mouseout', function() {       // Add mouseout to reset
-        d3.select(this)
-          .style('color', null);         // Reset text color
-      });
+       .append('p')                       // Append paragraph for each data item
+        .attr('class', 'text-item')        // Add the same class as Angular version
+        .text(d => d)                      // Set text content from data
+        .on('click', (event, d) => {       // Add click handler
+          alert(d);                        // Show alert with text content
+        })
+        .on('mouseover', function() {      // Add mouseover handler
+          d3.select(this)                  // Select hovered element
+            .style('color', '#007bff')     // Change text color on hover
+            .style('cursor', 'pointer');    // Change cursor to pointer
+        })
+        .on('mouseout', function() {       // Add mouseout to reset
+          d3.select(this)
+            .style('color', null);         // Reset text color
+        });
+
+      
   }
 } 
